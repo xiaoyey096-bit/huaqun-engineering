@@ -1,6 +1,12 @@
 (function () {
   var D = window.HUAQUN;
   var IMG = "assets/img/";
+  var WEBP = (function () {
+    var c = document.createElement("canvas");
+    c.width = c.height = 1;
+    try { return c.toDataURL("image/webp").indexOf("data:image/webp") === 0; } catch (e) { return false; }
+  })();
+  function heroUrl(key) { return IMG + "hero/" + key + (WEBP ? ".webp" : ".jpg"); }
 
   function cat(id) {
     for (var i = 0; i < D.cats.length; i++) if (D.cats[i].id === id) return D.cats[i];
@@ -51,7 +57,7 @@
     var slides = "", dots = "";
     heroes.forEach(function (c, i) {
       slides += '<div class="hero-slide' + (i === 0 ? " on" : "") +
-        '" style="background-image:url(' + IMG + "hero/" + c.hero + '.webp),url(' + IMG + "hero/" + c.hero + '.jpg)"></div>';
+        '" data-img="' + c.hero + '"></div>';
       dots += "<button" + (i === 0 ? ' class="on"' : "") + " data-i=\"" + i + '"></button>';
     });
     document.getElementById("slides").innerHTML = slides;
@@ -60,11 +66,21 @@
     var cur = 0, timer;
     var count = document.getElementById("hcount");
     function pad(n) { return (n < 10 ? "0" : "") + n; }
+    function loadSlide(i) {
+      var s = document.querySelectorAll(".hero-slide");
+      if (!s.length) return;
+      var el = s[(i + s.length) % s.length];
+      if (!el || el.getAttribute("data-loaded")) return;
+      el.style.backgroundImage = "url(" + heroUrl(el.getAttribute("data-img")) + ")";
+      el.setAttribute("data-loaded", "1");
+    }
+    function prime(i) { loadSlide(i); loadSlide(i + 1); }
     function go(i) {
       var s = document.querySelectorAll(".hero-slide"), d = document.querySelectorAll(".hero-dots button");
       if (!s.length) return;
       cur = (i + s.length) % s.length;
       for (var k = 0; k < s.length; k++) { s[k].classList.toggle("on", k === cur); d[k].classList.toggle("on", k === cur); }
+      prime(cur);
       if (count) count.textContent = pad(cur + 1) + " / " + pad(s.length);
     }
     function play() { clearInterval(timer); timer = setInterval(function () { go(cur + 1); }, 5200); }
