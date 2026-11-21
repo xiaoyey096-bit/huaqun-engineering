@@ -43,11 +43,6 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.35; }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
 
 /* ---------- header ---------- */
-.hq-telbar { background: var(--navy-d); color: rgba(255, 255, 255, .68); font-size: 13px; }
-.hq-telbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 34px; }
-.hq-telbar span { white-space: nowrap; }
-.hq-telbar .tel { display: none; color: var(--blue-l); font-weight: 700; letter-spacing: .5px; }
-
 .hq-head { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 60; }
 .hq-head .wrap { display: flex; align-items: center; justify-content: space-between; height: 74px; }
 .hq-logo { display: flex; align-items: center; gap: 12px; }
@@ -310,9 +305,6 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.35; }
   .hq-nav a.on::after { display: none; }
   .hq-burger { display: block; }
   .hq-head .hotline { display: none; }
-  .hq-telbar .wrap { height: auto; padding: 8px 20px; font-size: 12px; }
-  .hq-telbar .desc { display: none; }
-  .hq-telbar .tel { display: inline; }
   .cats, .grid, .stats, .scope-list { grid-template-columns: 1fr; }
   .words { padding: 36px 0; }
   .words-say { font-size: 16px; line-height: 1.95; letter-spacing: .5px; }
