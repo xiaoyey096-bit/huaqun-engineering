@@ -239,7 +239,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.35; }
 .scope-list li::before { content: ""; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: var(--amber); border-radius: 50%; }
 
 /* ---------- 数据条 / 流程 ---------- */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
 .stats b { display: block; font-size: 34px; color: var(--navy); font-weight: 800; }
 .stats b i { font-style: normal; font-size: 15px; color: var(--amber); margin-left: 3px; }
 .stats span { font-size: 14px; color: var(--ink-l); }

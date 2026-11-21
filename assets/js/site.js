@@ -114,13 +114,10 @@
 
     var named = visible().filter(function (c) { return c.kind === "named"; }).length;
     var total = visible().reduce(function (a, c) { return a + c.images.length; }, 0);
-    var regions = {};
-    visible().forEach(function (c) { regions[c.region] = 1; });
     document.getElementById("stats").innerHTML = [
       [D.company.founded, "年", "公司注册成立"],
       [named, "个", "画册署名工程"],
       [total, "张", "工程影像"],
-      [Object.keys(regions).length, "地", "服务区域"],
     ].map(function (r) { return "<div><b>" + r[0] + "<i>" + r[1] + "</i></b><span>" + r[2] + "</span></div>"; }).join("");
   }
 
